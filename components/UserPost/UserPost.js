@@ -9,17 +9,14 @@ import {
   faComment,
   faHeart,
 } from '@fortawesome/free-regular-svg-icons';
+import UserImage from '../UserImage/UserImage';
 
 const UserPost = prop => {
   return (
     <View style={style.postContainer}>
       <View style={style.postHeader}>
         <View style={style.userInformation}>
-          <View style={style.image}>
-            <Image
-              source={require('../../assets/images/default_profile.png')}
-            />
-          </View>
+          <UserImage />
           <View style={style.userPostInformation}>
             <Text style={style.userName}>
               {prop.firstName} {prop.lastName}

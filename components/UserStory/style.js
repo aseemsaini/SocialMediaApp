@@ -13,12 +13,6 @@ const style = StyleSheet.create({
     fontFamily: 'Inter',
     fontWeight: '500',
   },
-  userImageContainer: {
-    borderColor: '#F35BAC',
-    borderWidth: 1,
-    borderRadius: 100,
-    padding: 3,
-  },
 });
 
 export default style;
