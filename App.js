@@ -12,6 +12,7 @@ import {faEnvelope} from '@fortawesome/free-regular-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import style from './assets/styles/main';
 import UserStory from './components/UserStory/UserStory';
+import UserPost from './components/UserPost/UserPost';
 
 const App = () => {
   const data = [
@@ -26,17 +27,81 @@ const App = () => {
     {firstName: 'Aseem', id: 9},
     {firstName: 'Maria', id: 10},
   ];
-  const pageSize = 4;
-  const [pageNumber, setPageNumber] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [renderedData, setRenderedData] = useState(data.slice(0, pageSize));
 
-  const pagination = (data, pageNumber, pageSize) => {
+  const posts = [
+    {
+      firstName: 'Joel',
+      lastName: 'Miller',
+      location: 'Jackson County, Wyoming',
+      likes: 1200,
+      comments: 50,
+      bookmarks: 100,
+      id: 1,
+    },
+    {
+      firstName: 'Tommy',
+      lastName: 'Miller',
+      location: 'Jackson County, Wyoming',
+      likes: 987,
+      comments: 65,
+      bookmarks: 105,
+      id: 2,
+    },
+    {
+      firstName: 'Abby',
+      lastName: 'Anderson',
+      location: 'Seattle, Washington DC',
+      likes: 450,
+      comments: 10,
+      bookmarks: 80,
+      id: 3,
+    },
+    {
+      firstName: 'Aseem',
+      lastName: 'Saini',
+      location: 'New York, New York City',
+      likes: 1250,
+      comments: 510,
+      bookmarks: 180,
+      id: 4,
+    },
+    {
+      firstName: 'Ellie',
+      lastName: 'Williams',
+      location: 'Jackson County, Wyoming',
+      likes: 250,
+      comments: 14,
+      bookmarks: 60,
+      id: 5,
+    },
+  ];
+
+  const pageSize = 4;
+  const pageSizePosts = 2;
+
+  const [pageNumber, setPageNumber] = useState(1);
+  const [postPageNumber, setPostPageNumber] = useState(1);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingPosts, setIsLoadingPosts] = useState(false);
+
+  const [renderedData, setRenderedData] = useState(data.slice(0, pageSize));
+  const [renderedDataPosts, setRenderedDataPosts] = useState(
+    posts.slice(0, pageSizePosts),
+  );
+
+  const pagination = (data, pageNumber, pageSize, posts = false) => {
     let startIndex = (pageNumber - 1) * pageSize;
-    console.log(startIndex, renderedData.length);
     if (startIndex > data.length) {
       return [];
     }
+
+    if (!posts) {
+      setPageNumber(pageNumber);
+    } else {
+      setPostPageNumber(pageNumber);
+    }
+
     setPageNumber(pageNumber);
     return data.slice(startIndex, startIndex + pageSize);
   };
@@ -71,6 +136,35 @@ const App = () => {
             showsHorizontalScrollIndicator={false}
             data={renderedData}
             renderItem={({item}) => <UserStory firstName={item.firstName} />}
+          />
+        </View>
+
+        <View style={style.userPostContainer}>
+          <FlatList
+            onEndReachedThreshold={0.5}
+            keyExtractor={item => item.id.toString()}
+            onEndReached={() => {
+              if (!isLoadingPosts) {
+                setIsLoadingPosts(true);
+                setRenderedDataPosts(prev => [
+                  ...prev,
+                  ...pagination(posts, pageNumber + 1, pageSize, true),
+                ]);
+              }
+              setIsLoadingPosts(false);
+            }}
+            showsVerticalScrollIndicator={false}
+            data={posts}
+            renderItem={({item}) => (
+              <UserPost
+                firstName={item.firstName}
+                lastName={item.lastName}
+                location={item.location}
+                likes={item.likes}
+                comments={item.comments}
+                bookmarks={item.bookmarks}
+              />
+            )}
           />
         </View>
       </ScrollView>

@@ -37,6 +37,11 @@ const style = StyleSheet.create({
     paddingHorizontal: 28,
     marginTop: 12,
   },
+  userPostContainer: {
+    lineHeight: '100%',
+    paddingHorizontal: 24,
+    marginTop: 20,
+  },
 });
 
 export default style;
