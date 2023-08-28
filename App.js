@@ -22,11 +22,24 @@ const App = () => {
     {firstName: 'Jessie', id: 5},
     {firstName: 'Sarah', id: 6},
     {firstName: 'Abby', id: 7},
+    {firstName: 'Bill', id: 8},
+    {firstName: 'Aseem', id: 9},
+    {firstName: 'Maria', id: 10},
   ];
   const pageSize = 4;
   const [pageNumber, setPageNumber] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const [renderedData, isRenderedData] = useState([]);
+  const [renderedData, setRenderedData] = useState(data.slice(0, pageSize));
+
+  const pagination = (data, pageNumber, pageSize) => {
+    let startIndex = (pageNumber - 1) * pageSize;
+    console.log(startIndex, renderedData.length);
+    if (startIndex > data.length) {
+      return [];
+    }
+    setPageNumber(pageNumber);
+    return data.slice(startIndex, startIndex + pageSize);
+  };
 
   return (
     <SafeAreaView>
@@ -42,9 +55,21 @@ const App = () => {
         </View>
         <View style={style.userStoriesContainer}>
           <FlatList
+            onEndReachedThreshold={0.5}
+            keyExtractor={item => item.id.toString()}
+            onEndReached={() => {
+              if (!isLoading) {
+                setIsLoading(true);
+                setRenderedData(prev => [
+                  ...prev,
+                  ...pagination(data, pageNumber + 1, pageSize),
+                ]);
+              }
+              setIsLoading(false);
+            }}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            data={data}
+            data={renderedData}
             renderItem={({item}) => <UserStory firstName={item.firstName} />}
           />
         </View>
