@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   View,
@@ -6,6 +6,7 @@ import {
   ScrollView,
   Pressable,
   FlatList,
+  Dimensions,
 } from 'react-native';
 import Title from './components/Title/Title';
 import {faEnvelope} from '@fortawesome/free-regular-svg-icons';
@@ -90,6 +91,14 @@ const App = () => {
     posts.slice(0, pageSizePosts),
   );
 
+  const [screenData, setScreenData] = useState(Dimensions.get('screen'));
+
+  useEffect(() => {
+    Dimensions.addEventListener('change', result => {
+      setScreenData(result.screen);
+    });
+  }, []);
+
   const pagination = (data, pageNumber, pageSize, posts = false) => {
     let startIndex = (pageNumber - 1) * pageSize;
     if (startIndex > data.length) {
@@ -113,7 +122,9 @@ const App = () => {
           <>
             <View style={style.header}>
               <Title title={"Let's Explore"} />
-              <Pressable style={style.messageIcon}>
+              <Pressable
+                style={style.messageIcon}
+                onPress={() => console.log('Message Pressed!')}>
                 <FontAwesomeIcon
                   icon={faEnvelope}
                   color={'#CACDDE'}
