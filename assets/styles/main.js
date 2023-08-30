@@ -1,10 +1,11 @@
 import {StyleSheet} from 'react-native';
+import {horizontalScale, scaltFontSize, verticalScale} from './scaling';
 
 const style = StyleSheet.create({
   header: {
-    paddingTop: 30,
-    paddingLeft: 26,
-    paddingRight: 17,
+    paddingTop: verticalScale(30),
+    paddingLeft: horizontalScale(26),
+    paddingRight: horizontalScale(17),
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
@@ -13,34 +14,34 @@ const style = StyleSheet.create({
   messageIcon: {
     backgroundColor: '#F9FAFB',
     borderRadius: 100,
-    padding: 12,
+    padding: horizontalScale(12),
   },
   messageNumberContainer: {
     width: 10,
     height: 10,
     backgroundColor: '#F35BAC',
-    borderRadius: 100,
+    borderRadius: horizontalScale(100),
     position: 'absolute',
-    right: 8,
-    top: 10,
+    right: verticalScale(8),
+    top: horizontalScale(10),
   },
   messageNumber: {
-    fontSize: 6,
+    fontSize: scaltFontSize(6),
     fontFamily: 'Inter',
     fontWeight: '600',
     lineHeight: 7,
-    paddingTop: 1,
-    paddingLeft: 3,
+    paddingTop: verticalScale(1),
+    paddingLeft: horizontalScale(3),
     color: '#FFFFFF',
   },
   userStoriesContainer: {
-    paddingHorizontal: 28,
-    marginTop: 12,
+    paddingHorizontal: horizontalScale(26),
+    marginTop: verticalScale(12),
   },
   userPostContainer: {
     lineHeight: '100%',
-    paddingHorizontal: 24,
-    marginTop: 20,
+    paddingHorizontal: horizontalScale(24),
+    marginTop: verticalScale(20),
   },
 });
 

@@ -1,19 +1,24 @@
 import {StyleSheet} from 'react-native';
+import {
+  horizontalScale,
+  scaltFontSize,
+  verticalScale,
+} from '../../assets/styles/scaling';
 
 const style = StyleSheet.create({
   userName: {
     fontFamily: 'Inter',
-    fontSize: 16,
+    fontSize: scaltFontSize(16),
     fontWeight: '500',
-    lineHeight: 19,
-    marginBottom: 3,
+    lineHeight: scaltFontSize(19),
+    marginBottom: verticalScale(3),
   },
   userLocation: {
     color: '#79869F',
     fontFamily: 'Inter',
-    fontSize: 12,
+    fontSize: scaltFontSize(12),
     fontWeight: '400',
-    lineHeight: 15,
+    lineHeight: scaltFontSize(15),
   },
   userInformation: {
     flex: 1,
@@ -21,11 +26,11 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   userPostInformation: {
-    marginLeft: 10,
+    marginLeft: horizontalScale(8),
   },
   image: {
     borderWidth: 1,
-    borderRadius: 100,
+    borderRadius: horizontalScale(100),
     borderColor: '#F35BAC',
     padding: 3,
   },
@@ -36,47 +41,47 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   postImage: {
-    marginVertical: 16,
+    marginVertical: verticalScale(16),
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    margin: 5,
+    margin: horizontalScale(3),
   },
   numbers: {
-    fontSize: 14,
+    fontSize: scaltFontSize(14),
     color: '#79869F',
     fontFamily: 'Inter',
     fontWeight: '500',
-    marginLeft: 5,
+    marginLeft: horizontalScale(5),
   },
   likes: {
     flex: 1,
     flexDirection: 'row',
-    marginLeft: 16,
-    marginRight: 27,
+    marginLeft: horizontalScale(16),
+    marginRight: horizontalScale(27),
   },
   comments: {
     flex: 1,
     flexDirection: 'row',
-    marginRight: 27,
+    marginRight: horizontalScale(27),
   },
   bookmarks: {
     flex: 1,
     flexDirection: 'row',
-    marginRight: 27,
+    marginRight: horizontalScale(27),
   },
   info: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    marginBottom: 23,
+    marginBottom: verticalScale(23),
   },
   postContainer: {
     borderBottomWidth: 1,
     borderBlockEndColor: '#EFF2F6',
-    marginBottom: 20,
+    marginBottom: verticalScale(20),
   },
 });
 

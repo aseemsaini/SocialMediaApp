@@ -7,6 +7,8 @@ import {
   Pressable,
   FlatList,
   Dimensions,
+  Platform,
+  Switch,
 } from 'react-native';
 import Title from './components/Title/Title';
 import {faEnvelope} from '@fortawesome/free-regular-svg-icons';
@@ -92,6 +94,7 @@ const App = () => {
   );
 
   const [screenData, setScreenData] = useState(Dimensions.get('screen'));
+  const [isOn, setIsOn] = useState(true);
 
   useEffect(() => {
     Dimensions.addEventListener('change', result => {
@@ -134,6 +137,16 @@ const App = () => {
                   <Text style={style.messageNumber}>2</Text>
                 </View>
               </Pressable>
+
+              {/* <Switch
+                value={isOn}
+                onValueChange={value => setIsOn(value)}
+                style={[
+                  Platform.OS == 'android' && {
+                    transform: [{scaleX: 1.8}, {scaleY: 1.8}],
+                  },
+                ]}
+              /> */}
             </View>
             <View style={style.userStoriesContainer}>
               <FlatList
