@@ -4,6 +4,7 @@ import {Image, Text, View} from 'react-native';
 import globalStyle from '../../assets/styles/main';
 import style from './style';
 import {ScrollView} from 'react-native-gesture-handler';
+import {ProfileTabNavigation} from '../../navigation/MainNavigation';
 
 const Profile = () => {
   return (
@@ -35,10 +36,8 @@ const Profile = () => {
           </View>
         </View>
         <View style={style.border} />
-        <View style={style.profileMediaContainer}>
-          <Text style={style.profileMediaOptions}>Photos</Text>
-          <Text style={style.profileMediaOptions}>Videos</Text>
-          <Text style={style.profileMediaOptions}>Saved</Text>
+        <View style={{height: '100%'}}>
+          <ProfileTabNavigation />
         </View>
       </ScrollView>
     </SafeAreaView>

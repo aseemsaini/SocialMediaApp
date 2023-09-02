@@ -66,6 +66,7 @@ const style = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#EFF2F6',
     marginHorizontal: horizontalScale(28),
+    marginVertical: verticalScale(20),
   },
   profileMediaContainer: {
     marginTop: verticalScale(32),
